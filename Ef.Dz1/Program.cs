@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Ef.Dz1
 {
@@ -8,7 +9,13 @@ namespace Ef.Dz1
         {
             using (var db = new DBContext())
             {
-                db.Database.EnsureCreated();
+                db.Database.Migrate();
+
+                MusicCollection mc = new MusicCollection();
+
+                mc.ShowTracksAboveAvg(2);
+                mc.ShowTopThree(2);
+                mc.SearchTracks("spendin");
             }
         }
     }
